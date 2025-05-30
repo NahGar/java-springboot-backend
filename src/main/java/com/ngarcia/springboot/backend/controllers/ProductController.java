@@ -61,7 +61,8 @@ public class ProductController {
    public ResponseEntity<Product> delete(@PathVariable Long id) {
       Optional<Product> opt = service.findById(id);
       if(opt.isPresent()) {
-         return ResponseEntity.ok().body(opt.orElseThrow());
+         Product optDelete = service.findById(id).orElseThrow();
+         return ResponseEntity.ok().body(optDelete);
       }
       return ResponseEntity.notFound().build();
    }
